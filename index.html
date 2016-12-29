@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>MAL Randomiser</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css">
+  </head>
+  <body>
+  	<header>
+        <h1>Random Anime:</h1>
+        <p>Username:</p>
+        <input type="text" id="username" onkeydown=btnpress()>
+        <p id="result"></p>
+        <button type="button" onclick=username() id=randomise>Randomise</button>
+        <script>
+            function username(){
+                username = document.getElementById("username").value;
+                window.location = "/" + username;
+            }
+
+            function btnpress() {
+                if (event.keyCode == 13) {
+                    document.getElementById('randomise').click();
+                }
+            }
+        </script>
+    </header>
+  </body>
+</html>
