@@ -10,8 +10,19 @@
         <h1>Random Anime:</h1>
         <p>Username:</p>
         <input type="text" id="username" onkeydown=btnpress()>
-        <p id="result"></p>
         <button type="button" onclick=username() id=randomise>Randomise</button>
+        <a id="title"></a>
+        <img id="img"></img>
+        <p id="description"></p>
+        <p id="score"></p>
+        <p id="ranked"></p>
+        <p id="popularity"></p>
+        <p id="members"></p>
+        <p id="type"></p>
+        <p id="eps"></p>
+        <p id="aired"></p>
+        <iframe id="pv" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+
         <script>
             function username(){
                 username = document.getElementById("username").value;

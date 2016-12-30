@@ -4,6 +4,7 @@
   "description": "View MyAnimeList profile and randomly choose a series to watch.",
   "main": "main.js",
   "dependencies": {
+    "bulma": "^0.2.3",
     "cheerio": "^0.22.0",
     "express": "^4.14.0",
     "request": "^2.79.0"
