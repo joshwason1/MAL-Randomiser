@@ -1,30 +1,22 @@
 var request = require('request'),
     cheerio = require('cheerio');
 
-var username;
-var MALinfo;
-var status;
-var ids;
-var result;
-var resultID;
-var animeURL;
-
 exports.randomAnime = function(callback, username) {
-    MALinfo = "https://myanimelist.net/malappinfo.php?u=" + username + "&status=all&type=anime";
-    status = "2";
-    ids = [];
+    let MALinfo = "https://myanimelist.net/malappinfo.php?u=" + username + "&status=all&type=anime";
+    const status = "2";
+    let ids = [];
     request(MALinfo, function(error, response, body) {
-        var $ = cheerio.load(body, {xmlMode: true});
+        let $ = cheerio.load(body, {xmlMode: true});
         $('anime').each(function () {
             if ($(this).find('my_status').text() === status) {
                 ids.push($(this).find('series_animedb_id').text());
             }
         });
         if (ids.length > 0) {
-            var i = Math.floor((Math.random() * ids.length));
-            resultID = ids[i];
+            let i = Math.floor((Math.random() * ids.length));
+            var resultID = ids[i];
         }
-        animeURL = "https://myanimelist.net/anime/" + resultID;
+        let animeURL = "https://myanimelist.net/anime/" + resultID;
         request(animeURL, function (error, response, body) {
             let $$ = cheerio.load(body);
             let title = $$('.ac').first().attr('alt');
@@ -35,7 +27,7 @@ exports.randomAnime = function(callback, username) {
             let popularity = $$('strong', '.numbers.popularity').text();
             let members = $$('strong', '.numbers.members').text();
             let ratingCount = $$('[itemprop="ratingCount"]').text();
-            let eps = $$('.spaceit:contains("Episodes")').text().trim().replace('Episodes:', '').trim();
+            let eps = $$('.spaceit:contains("Episodes")').first().text().trim().replace('Episodes:', '').trim();
             let pv = 'N/A';
             if ($$('.video-promotion').length) {
                 pv = `${$$('.video-promotion a').attr('href').substring(0, $$('.video-promotion a').attr('href').indexOf('?'))}`
@@ -48,7 +40,7 @@ exports.randomAnime = function(callback, username) {
             if ($$('a[href^="https://myanimelist.net/anime/season/"]').length) {
                 aired = $$('a[href^="https://myanimelist.net/anime/season/"]').first().text();
             }
-            result = {
+            let result = {
                 animeURL: animeURL,
                 title: title,
                 img: img,

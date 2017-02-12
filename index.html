@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>MAL Randomiser</title>
-    <link rel="stylesheet" href="styles/main.css" type="text/css">
-  </head>
-  <body>
-  	<header>
-        <h1>Random Anime:</h1>
-        <p>Username:</p>
-        <input type="text" id="username" onkeydown=btnpress()>
-        <button type="button" onclick=username() id=randomise>Randomise</button>
-        <a id="title"></a>
-        <img id="img"></img>
-        <p id="description"></p>
-        <p id="score"></p>
-        <p id="ranked"></p>
-        <p id="popularity"></p>
-        <p id="members"></p>
-        <p id="type"></p>
-        <p id="eps"></p>
-        <p id="aired"></p>
-        <iframe id="pv" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    <head>
+        <meta charset="UTF-8">
+        <title>MAL Randomiser</title>
+        <link rel="stylesheet" href="styles/bulma.css" type="text/css">
+        <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+    </head>
+    <body>
+        <div class="content container">
+            <section id="top" class=section>
+                <h1 class="title is-2">Random Anime:</h1>
+                <label class=label>Username:</label>
+                <div class="columns">
+                    <div class="column is-4">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="MyAnimeList Username" id="username" onkeydown=btnpress(event)>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <button class="button is-primary" type="button" onclick=username() id=randomise>Randomise</button>
+                    </div>
+                </div>
+            </section>
 
+            <section id="middle" class="section">
+                <div class="columns">
+                    <div class="column">
+                        <p>
+                            <a class="title" id="title"></a>
+                        <p>
+                        <p id="description"></p>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <img id="img"></img>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bottom" class="section">
+                <div class="columns">
+                    <div class="column">
+                        <h4 id="score"></h4>
+                        <h4 id="ranked"></h4>
+                        <h4 id="popularity"></h4>
+                        <h4 id="members"></h4>
+                        <h4 id="type"></h4>
+                        <h4 id="eps"></h4>
+                        <h4 id="aired"></h4>
+                    </div>
+                    <div class="column">
+                        <iframe id="pv" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+        </div>
         <script>
             function username(){
                 username = document.getElementById("username").value;
                 window.location = "/" + username;
+                document.getElementById("randomise").className = "button is-loading";
             }
 
-            function btnpress() {
+            function btnpress(event) {
                 if (event.keyCode == 13) {
                     document.getElementById('randomise').click();
                 }
             }
         </script>
-    </header>
-  </body>
+    </body>
 </html>
